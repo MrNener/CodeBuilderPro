@@ -9,6 +9,7 @@
 - DAL
 	- Bases
 		- BaseDALConf.cs
+		- MsSqlDALConf.cs / MySqlDALConf.cs
 	- xxxDAL.cs
 - Models
 	- xxxModel.cs
@@ -18,6 +19,6 @@
 		- ISqlHelper.cs
 	- CommonExtend.cs
 	- GenericSQLGenerator.cs
-	- SqlServerHelper.cs /MySqlHelper.cs
+	- MsSqlHelper.cs /MySqlHelper.cs
 
 ### [Example](Example)

@@ -121,54 +121,54 @@ namespace CodeBuilderPro.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("using System.Data.SqlClient;\r\nusing System.Data;\r\nusing ${namespace}Helper.Bases;" +
-            "\r\n\r\nnamespace ${namespace}Helper\r\n{\r\n    public  class SqlServerHelper: BaseSqlH" +
-            "elperConf, ISqlHelper<SqlConnection ,SqlParameter>\r\n    {\r\n        public SqlSer" +
-            "verHelper() : base() { }\r\n        public SqlServerHelper(string name) : base(nam" +
-            "e) { }\r\n\r\n\r\n        public object ExecuteScalar(string cmdText, params SqlParame" +
-            "ter[] parameters)\r\n        {\r\n            using (SqlConnection conn = new SqlCon" +
-            "nection(ConnectionStr))\r\n            {\r\n                conn.Open();\r\n          " +
-            "      return ExecuteScalar(conn, cmdText, parameters );\r\n            }\r\n        " +
-            "}\r\n\r\n        public  DataSet ExecuteDataSet(string cmdText, params SqlParameter[" +
-            "] parameters)\r\n        {\r\n            using (SqlConnection con = new SqlConnecti" +
-            "on(ConnectionStr))\r\n            {\r\n                con.Open();\r\n                " +
-            "return ExecuteDataSet(con, cmdText, parameters);\r\n            }\r\n        }\r\n\r\n  " +
-            "      public  DataTable ExecuteDataTable(string cmdText, params SqlParameter[] p" +
-            "arameters)\r\n        {\r\n            using (SqlConnection con = new SqlConnection(" +
-            "ConnectionStr))\r\n            {\r\n                con.Open();\r\n                ret" +
-            "urn ExecuteDataTable(con, cmdText, parameters );\r\n            }\r\n        }\r\n\r\n  " +
-            "      public  int ExecuteNonQuery(SqlConnection conn, string cmdText,\r\n         " +
-            "  params SqlParameter[] parameters)\r\n        {\r\n            using (SqlCommand cm" +
-            "d = conn.CreateCommand())\r\n            {\r\n                cmd.CommandText = cmdT" +
-            "ext;\r\n                cmd.Parameters.AddRange(parameters);\r\n                retu" +
-            "rn cmd.ExecuteNonQuery();\r\n            }\r\n        }\r\n\r\n        /// <summary>\r\n  " +
-            "      /// 执行返回第一行第一列\r\n        /// </summary>\r\n        /// <param name=\"conn\"></p" +
-            "aram>\r\n        /// <param name=\"cmdText\"></param>\r\n        /// <param name=\"para" +
-            "meters\"></param>\r\n        /// <returns></returns>\r\n        public  object Execut" +
-            "eScalar(SqlConnection conn, string cmdText,\r\n            params SqlParameter[] p" +
-            "arameters)\r\n        {\r\n            using (SqlCommand cmd = conn.CreateCommand())" +
-            "\r\n            {\r\n                cmd.CommandText = cmdText;\r\n                cmd" +
-            ".Parameters.AddRange(parameters);\r\n                return cmd.ExecuteScalar();\r\n" +
-            "            }\r\n        }\r\n        /// <summary>\r\n        /// 执行返回DataTable\r\n    " +
-            "    /// </summary>\r\n        /// <param name=\"con\"></param>\r\n        /// <param n" +
-            "ame=\"cmdText\"></param>\r\n        /// <param name=\"parameters\"></param>\r\n        /" +
-            "// <returns></returns>\r\n        public  DataTable ExecuteDataTable(SqlConnection" +
-            " con, string cmdText, params SqlParameter[] parameters)\r\n        {\r\n            " +
-            "return ExecuteDataSet(con, cmdText, parameters).Tables[0];\r\n        }\r\n        /" +
-            "// <summary>\r\n        /// 执行返回DataSet\r\n        /// </summary>\r\n        /// <para" +
-            "m name=\"con\"></param>\r\n        /// <param name=\"cmdText\"></param>\r\n        /// <" +
-            "param name=\"parameters\"></param>\r\n        /// <returns></returns>\r\n        publi" +
-            "c  DataSet ExecuteDataSet(SqlConnection con, string cmdText, params SqlParameter" +
-            "[] parameters)\r\n        {\r\n            using (SqlCommand cmd = con.CreateCommand" +
-            "())\r\n            {\r\n                cmd.CommandText = cmdText;\r\n                " +
-            "cmd.Parameters.AddRange(parameters);\r\n                using (SqlDataAdapter adap" +
-            "ter = new SqlDataAdapter(cmd))\r\n                {\r\n                    DataSet d" +
-            "s = new DataSet();\r\n                    adapter.FillSchema(ds, SchemaType.Source" +
-            ");\r\n                    adapter.Fill(ds);\r\n                    return ds;\r\n     " +
-            "           }\r\n            }\r\n        }\r\n\r\n        public  int ExecuteNonQuery(st" +
-            "ring cmdText, params SqlParameter[] parameters)\r\n        {\r\n            using (S" +
-            "qlConnection conn = new SqlConnection(ConnectionStr))\r\n            {\r\n          " +
-            "      conn.Open();\r\n                return ExecuteNonQuery(conn, cmdText, parame" +
-            "ters );\r\n            }\r\n        }\r\n    }\r\n}")]
+            "\r\n\r\nnamespace ${namespace}Helper\r\n{\r\n    public  class MsSqlHelper: BaseSqlHelpe" +
+            "rConf, ISqlHelper<SqlConnection ,SqlParameter>\r\n    {\r\n        public MsSqlHelpe" +
+            "r() : base() { }\r\n        public MsSqlHelper(string name) : base(name) { }\r\n\r\n\r\n" +
+            "        public object ExecuteScalar(string cmdText, params SqlParameter[] parame" +
+            "ters)\r\n        {\r\n            using (SqlConnection conn = new SqlConnection(Conn" +
+            "ectionStr))\r\n            {\r\n                conn.Open();\r\n                return" +
+            " ExecuteScalar(conn, cmdText, parameters );\r\n            }\r\n        }\r\n\r\n       " +
+            " public  DataSet ExecuteDataSet(string cmdText, params SqlParameter[] parameters" +
+            ")\r\n        {\r\n            using (SqlConnection con = new SqlConnection(Connectio" +
+            "nStr))\r\n            {\r\n                con.Open();\r\n                return Execu" +
+            "teDataSet(con, cmdText, parameters);\r\n            }\r\n        }\r\n\r\n        public" +
+            "  DataTable ExecuteDataTable(string cmdText, params SqlParameter[] parameters)\r\n" +
+            "        {\r\n            using (SqlConnection con = new SqlConnection(ConnectionSt" +
+            "r))\r\n            {\r\n                con.Open();\r\n                return ExecuteD" +
+            "ataTable(con, cmdText, parameters );\r\n            }\r\n        }\r\n\r\n        public" +
+            "  int ExecuteNonQuery(SqlConnection conn, string cmdText,\r\n           params Sql" +
+            "Parameter[] parameters)\r\n        {\r\n            using (SqlCommand cmd = conn.Cre" +
+            "ateCommand())\r\n            {\r\n                cmd.CommandText = cmdText;\r\n      " +
+            "          cmd.Parameters.AddRange(parameters);\r\n                return cmd.Execu" +
+            "teNonQuery();\r\n            }\r\n        }\r\n\r\n        /// <summary>\r\n        /// 执行" +
+            "返回第一行第一列\r\n        /// </summary>\r\n        /// <param name=\"conn\"></param>\r\n     " +
+            "   /// <param name=\"cmdText\"></param>\r\n        /// <param name=\"parameters\"></pa" +
+            "ram>\r\n        /// <returns></returns>\r\n        public  object ExecuteScalar(SqlC" +
+            "onnection conn, string cmdText,\r\n            params SqlParameter[] parameters)\r\n" +
+            "        {\r\n            using (SqlCommand cmd = conn.CreateCommand())\r\n          " +
+            "  {\r\n                cmd.CommandText = cmdText;\r\n                cmd.Parameters." +
+            "AddRange(parameters);\r\n                return cmd.ExecuteScalar();\r\n            " +
+            "}\r\n        }\r\n        /// <summary>\r\n        /// 执行返回DataTable\r\n        /// </su" +
+            "mmary>\r\n        /// <param name=\"con\"></param>\r\n        /// <param name=\"cmdText" +
+            "\"></param>\r\n        /// <param name=\"parameters\"></param>\r\n        /// <returns>" +
+            "</returns>\r\n        public  DataTable ExecuteDataTable(SqlConnection con, string" +
+            " cmdText, params SqlParameter[] parameters)\r\n        {\r\n            return Execu" +
+            "teDataSet(con, cmdText, parameters).Tables[0];\r\n        }\r\n        /// <summary>" +
+            "\r\n        /// 执行返回DataSet\r\n        /// </summary>\r\n        /// <param name=\"con\"" +
+            "></param>\r\n        /// <param name=\"cmdText\"></param>\r\n        /// <param name=\"" +
+            "parameters\"></param>\r\n        /// <returns></returns>\r\n        public  DataSet E" +
+            "xecuteDataSet(SqlConnection con, string cmdText, params SqlParameter[] parameter" +
+            "s)\r\n        {\r\n            using (SqlCommand cmd = con.CreateCommand())\r\n       " +
+            "     {\r\n                cmd.CommandText = cmdText;\r\n                cmd.Paramete" +
+            "rs.AddRange(parameters);\r\n                using (SqlDataAdapter adapter = new Sq" +
+            "lDataAdapter(cmd))\r\n                {\r\n                    DataSet ds = new Data" +
+            "Set();\r\n                    adapter.FillSchema(ds, SchemaType.Source);\r\n        " +
+            "            adapter.Fill(ds);\r\n                    return ds;\r\n                }" +
+            "\r\n            }\r\n        }\r\n\r\n        public  int ExecuteNonQuery(string cmdText" +
+            ", params SqlParameter[] parameters)\r\n        {\r\n            using (SqlConnection" +
+            " conn = new SqlConnection(ConnectionStr))\r\n            {\r\n                conn.O" +
+            "pen();\r\n                return ExecuteNonQuery(conn, cmdText, parameters );\r\n   " +
+            "         }\r\n        }\r\n    }\r\n}")]
         public string SqlHelper {
             get {
                 return ((string)(this["SqlHelper"]));
@@ -182,41 +182,28 @@ namespace CodeBuilderPro.Properties {
             "perConf, ISqlHelper<MySqlConnection, MySqlParameter>\r\n    {\r\n        public MySq" +
             "lHelper() : base() { }\r\n        public MySqlHelper(string name) : base(name) { }" +
             "\r\n\r\n        public DataSet ExecuteDataSet(string cmdText, params MySqlParameter[" +
-            "] parameters)\r\n        {\r\n            using (MySqlConnection con = new MySqlConn" +
-            "ection(ConnectionStr))\r\n            {\r\n                con.Open();\r\n            " +
-            "    return ExecuteDataSet(con, cmdText, parameters);\r\n            }\r\n        }\r\n" +
-            "\r\n        public DataSet ExecuteDataSet(MySqlConnection con, string cmdText, par" +
-            "ams MySqlParameter[] parameters)\r\n        {\r\n            using (MySqlCommand cmd" +
-            " = con.CreateCommand())\r\n            {\r\n                cmd.CommandText = cmdTex" +
-            "t;\r\n                cmd.Parameters.AddRange(parameters);\r\n                using " +
-            "(MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))\r\n                {\r\n     " +
-            "               DataSet ds = new DataSet();\r\n                    adapter.FillSche" +
-            "ma(ds, SchemaType.Source);\r\n                    adapter.Fill(ds);\r\n             " +
-            "       return ds;\r\n                }\r\n            }\r\n        }\r\n\r\n        public" +
-            " DataTable ExecuteDataTable(string cmdText, params MySqlParameter[] parameters)\r" +
-            "\n        {\r\n            using (MySqlConnection con = new MySqlConnection(Connect" +
-            "ionStr))\r\n            {\r\n                con.Open();\r\n                return Exe" +
-            "cuteDataTable(con, cmdText, parameters);\r\n            }\r\n        }\r\n\r\n        pu" +
-            "blic DataTable ExecuteDataTable(MySqlConnection con, string cmdText, params MySq" +
-            "lParameter[] parameters)\r\n        {\r\n            return ExecuteDataSet(con, cmdT" +
-            "ext, parameters).Tables[0];\r\n        }\r\n\r\n        public int ExecuteNonQuery(str" +
-            "ing cmdText, params MySqlParameter[] parameters)\r\n        {\r\n            using (" +
-            "MySqlConnection conn = new MySqlConnection(ConnectionStr))\r\n            {\r\n     " +
-            "           conn.Open();\r\n                return ExecuteNonQuery(conn, cmdText, p" +
-            "arameters);\r\n            }\r\n        }\r\n\r\n        public int ExecuteNonQuery(MySq" +
-            "lConnection conn, string cmdText, params MySqlParameter[] parameters)\r\n        {" +
-            "\r\n            using (MySqlCommand cmd = conn.CreateCommand())\r\n            {\r\n  " +
-            "              cmd.CommandText = cmdText;\r\n                cmd.Parameters.AddRang" +
-            "e(parameters);\r\n                return cmd.ExecuteNonQuery();\r\n            }\r\n  " +
-            "      }\r\n\r\n        public object ExecuteScalar(string cmdText, params MySqlParam" +
-            "eter[] parameters)\r\n        {\r\n            using (MySqlConnection conn = new MyS" +
-            "qlConnection(ConnectionStr))\r\n            {\r\n                conn.Open();\r\n     " +
-            "           return ExecuteScalar(conn, cmdText, parameters);\r\n            }\r\n    " +
-            "    }\r\n\r\n        public object ExecuteScalar(MySqlConnection conn, string cmdTex" +
-            "t, params MySqlParameter[] parameters)\r\n        {\r\n            using (MySqlComma" +
-            "nd cmd = conn.CreateCommand())\r\n            {\r\n                cmd.CommandText =" +
-            " cmdText;\r\n                cmd.Parameters.AddRange(parameters);\r\n               " +
-            " return cmd.ExecuteScalar();\r\n            }\r\n        }\r\n    }\r\n}\r\n")]
+            "] parameters)\r\n        {\r\n            return MySql.Data.MySqlClient.MySqlHelper." +
+            "ExecuteDataset(ConnectionStr, cmdText, parameters);\r\n        }\r\n\r\n        public" +
+            " DataSet ExecuteDataSet(MySqlConnection con, string cmdText, params MySqlParamet" +
+            "er[] parameters)\r\n        {\r\n            return MySql.Data.MySqlClient.MySqlHelp" +
+            "er.ExecuteDataset(con, cmdText, parameters);\r\n        }\r\n\r\n        public DataTa" +
+            "ble ExecuteDataTable(string cmdText, params MySqlParameter[] parameters)\r\n      " +
+            "  {\r\n            return MySql.Data.MySqlClient.MySqlHelper.ExecuteDataset(Connec" +
+            "tionStr, cmdText, parameters).Tables[0];\r\n        }\r\n\r\n        public DataTable " +
+            "ExecuteDataTable(MySqlConnection con, string cmdText, params MySqlParameter[] pa" +
+            "rameters)\r\n        {\r\n            return ExecuteDataSet(con, cmdText, parameters" +
+            ").Tables[0];\r\n        }\r\n\r\n        public int ExecuteNonQuery(string cmdText, pa" +
+            "rams MySqlParameter[] parameters)\r\n        {\r\n           return MySql.Data.MySql" +
+            "Client.MySqlHelper.ExecuteNonQuery(ConnectionStr, cmdText, parameters);\r\n       " +
+            " }\r\n\r\n        public int ExecuteNonQuery(MySqlConnection conn, string cmdText, p" +
+            "arams MySqlParameter[] parameters)\r\n        {\r\n            return MySql.Data.MyS" +
+            "qlClient.MySqlHelper.ExecuteNonQuery(conn, cmdText, parameters);\r\n        }\r\n\r\n " +
+            "       public object ExecuteScalar(string cmdText, params MySqlParameter[] param" +
+            "eters)\r\n        {\r\n            return MySql.Data.MySqlClient.MySqlHelper.Execute" +
+            "Scalar(ConnectionStr, cmdText, parameters);\r\n        }\r\n\r\n        public object " +
+            "ExecuteScalar(MySqlConnection conn, string cmdText, params MySqlParameter[] para" +
+            "meters)\r\n        {\r\n            return MySql.Data.MySqlClient.MySqlHelper.Execut" +
+            "eScalar(conn, cmdText, parameters);\r\n        }\r\n    }\r\n}\r\n")]
         public string MySqlHelper {
             get {
                 return ((string)(this["MySqlHelper"]));
@@ -449,6 +436,62 @@ namespace ${namespace}DAL.Bases
         public string BaseDALConf {
             get {
                 return ((string)(this["BaseDALConf"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"using ${namespace}Helper;
+using System.Data.SqlClient;
+
+namespace ${namespace}DAL.Bases
+{
+    /// <summary>
+    /// SqlServer
+    /// </summary>
+    public abstract class MsSqlDALConf : BaseDALConf<SqlConnection, SqlParameter, MsSqlHelper>
+    {
+        protected MsSqlDALConf(string name) : base(new MsSqlHelper(name))
+        {
+        }
+        protected MsSqlDALConf() : base()
+        {
+        }
+    }
+}
+")]
+        public string MsSqlDALConf {
+            get {
+                return ((string)(this["MsSqlDALConf"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"using MySql.Data.MySqlClient;
+
+namespace ${namespace}DAL.Bases
+{
+    /// <summary>
+    /// Mysql
+    /// </summary>
+    public abstract class MySqlDALConf : BaseDALConf<MySqlConnection, MySqlParameter, Helper.MySqlHelper>
+    {
+        protected MySqlDALConf(string name) : base(new Helper.MySqlHelper(name))
+        {
+        }
+        protected MySqlDALConf() : base()
+        {
+        }
+
+    }
+}")]
+        public string MySqlDALConf {
+            get {
+                return ((string)(this["MySqlDALConf"]));
+            }
+            set {
+                this["MySqlDALConf"] = value;
             }
         }
     }

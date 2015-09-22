@@ -1,4 +1,5 @@
 ﻿using MyProject.IDAL.Bases;
+using MyProject.DAL.Bases;
 using MyProject.Models;
 using System.Collections.Generic;
 using System;
@@ -6,9 +7,10 @@ using System.Data;
 using System.Data.SqlClient;
 
 namespace MyProject.DAL {
-public  class  system_roleDAL :BaseDALConf<SqlConnection, SqlParameter, SqlServerHelper>, Isystem_roleDAL{
+public  class  system_roleDAL :MsSqlDALConf, Isystem_roleDAL{
 
-        public system_roleDAL() : base(new SqlServerHelper()) { }
+        public system_roleDAL() : base() { }
+        public system_roleDAL(string name) : base(name) { }
         public  system_role ToModel(DataRow row) {
             return GenericSQLGenerator.ToModel<system_role>(row);
         }

@@ -164,16 +164,15 @@ namespace CodeBuilderPro
         public StringBuilder CreateDALCode(string tableName, DataTable dt)
         {
             StringBuilder sb = new StringBuilder();
-            string cName = ":BaseDALConf<SqlConnection, SqlParameter, SqlServerHelper>", helperName = "SqlServer";
-
+            string cName = ":MsSqlDALConf";
             if (sqltype == (int)SQLType.MySql)
             {
-                helperName = "MySql";
-                cName = ":BaseDALConf<MySqlConnection, MySqlParameter, MySqlHelper>";
+                cName = ":MySqlDALConf";
             }
-            sb.AppendLine("public  class  " + tableName + "DAL "+ cName + ", I" + tableName + "DAL{");
+            sb.AppendLine("public  class  " + tableName + "DAL " + cName + ", I" + tableName + "DAL{");
             sb.AppendLine("");
-            sb.AppendLine("        public "+ tableName + "DAL() : base(new " + helperName + "Helper()) { }");
+            sb.AppendLine("        public " + tableName + "DAL() : base() { }");
+            sb.AppendLine("        public " + tableName + "DAL(string name) : base(name) { }");
             GetAllDAL(tableName, dt, sb,"");
             sb.AppendLine("}");
             return sb;
@@ -205,6 +204,7 @@ namespace CodeBuilderPro
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("using "+ strNamespace + ".IDAL.Bases;");
+            sb.AppendLine("using " + strNamespace + ".DAL.Bases;");
             sb.AppendLine("using "+ strNamespace + ".Models;");
             sb.AppendLine("using System.Collections.Generic;");
             sb.AppendLine("using System;");
@@ -213,17 +213,15 @@ namespace CodeBuilderPro
             sb.AppendLine(sqluse);
             sb.AppendLine("");
             sb.AppendLine("namespace " + strNamespace + ".DAL {");
-            string cName = ":BaseDALConf<SqlConnection, SqlParameter, SqlServerHelper>",helperName= "SqlServer";
-
+            string cName = ":MsSqlDALConf";
             if (sqltype == (int)SQLType.MySql)
             {
-                helperName = "MySql";
-                cName = ":BaseDALConf<MySqlConnection, MySqlParameter, MySqlHelper>";
+                cName = ":MySqlDALConf";
             }
             sb.AppendLine("public  class  " + tableName + "DAL " + cName + ", I"+ tableName + "DAL{");
             sb.AppendLine("");
-
-            sb.AppendLine("        public "+ tableName + "DAL() : base(new "+ helperName + "Helper()) { }");
+            sb.AppendLine("        public "+ tableName + "DAL() : base() { }");
+            sb.AppendLine("        public " + tableName + "DAL(string name) : base(name) { }");
 
             GetAllDAL(tableName, dt, sb, "    ");
             sb.AppendLine("    }");

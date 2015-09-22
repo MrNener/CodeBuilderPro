@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CodeBuilderPlus.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CodeBuilderPro.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="strConn" Type="System.String" Scope="User">
@@ -129,10 +129,10 @@ using ${namespace}Helper.Bases;
 
 namespace ${namespace}Helper
 {
-    public  class SqlServerHelper: BaseSqlHelperConf, ISqlHelper&lt;SqlConnection ,SqlParameter&gt;
+    public  class MsSqlHelper: BaseSqlHelperConf, ISqlHelper&lt;SqlConnection ,SqlParameter&gt;
     {
-        public SqlServerHelper() : base() { }
-        public SqlServerHelper(string name) : base(name) { }
+        public MsSqlHelper() : base() { }
+        public MsSqlHelper(string name) : base(name) { }
 
 
         public object ExecuteScalar(string cmdText, params SqlParameter[] parameters)
@@ -249,36 +249,17 @@ namespace ${namespace}Helper
 
         public DataSet ExecuteDataSet(string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-            {
-                con.Open();
-                return ExecuteDataSet(con, cmdText, parameters);
-            }
+            return MySql.Data.MySqlClient.MySqlHelper.ExecuteDataset(ConnectionStr, cmdText, parameters);
         }
 
         public DataSet ExecuteDataSet(MySqlConnection con, string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlCommand cmd = con.CreateCommand())
-            {
-                cmd.CommandText = cmdText;
-                cmd.Parameters.AddRange(parameters);
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                {
-                    DataSet ds = new DataSet();
-                    adapter.FillSchema(ds, SchemaType.Source);
-                    adapter.Fill(ds);
-                    return ds;
-                }
-            }
+            return MySql.Data.MySqlClient.MySqlHelper.ExecuteDataset(con, cmdText, parameters);
         }
 
         public DataTable ExecuteDataTable(string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-            {
-                con.Open();
-                return ExecuteDataTable(con, cmdText, parameters);
-            }
+            return MySql.Data.MySqlClient.MySqlHelper.ExecuteDataset(ConnectionStr, cmdText, parameters).Tables[0];
         }
 
         public DataTable ExecuteDataTable(MySqlConnection con, string cmdText, params MySqlParameter[] parameters)
@@ -288,40 +269,22 @@ namespace ${namespace}Helper
 
         public int ExecuteNonQuery(string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlConnection conn = new MySqlConnection(ConnectionStr))
-            {
-                conn.Open();
-                return ExecuteNonQuery(conn, cmdText, parameters);
-            }
+           return MySql.Data.MySqlClient.MySqlHelper.ExecuteNonQuery(ConnectionStr, cmdText, parameters);
         }
 
         public int ExecuteNonQuery(MySqlConnection conn, string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlCommand cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = cmdText;
-                cmd.Parameters.AddRange(parameters);
-                return cmd.ExecuteNonQuery();
-            }
+            return MySql.Data.MySqlClient.MySqlHelper.ExecuteNonQuery(conn, cmdText, parameters);
         }
 
         public object ExecuteScalar(string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlConnection conn = new MySqlConnection(ConnectionStr))
-            {
-                conn.Open();
-                return ExecuteScalar(conn, cmdText, parameters);
-            }
+            return MySql.Data.MySqlClient.MySqlHelper.ExecuteScalar(ConnectionStr, cmdText, parameters);
         }
 
         public object ExecuteScalar(MySqlConnection conn, string cmdText, params MySqlParameter[] parameters)
         {
-            using (MySqlCommand cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = cmdText;
-                cmd.Parameters.AddRange(parameters);
-                return cmd.ExecuteScalar();
-            }
+            return MySql.Data.MySqlClient.MySqlHelper.ExecuteScalar(conn, cmdText, parameters);
         }
     }
 }
@@ -670,6 +633,47 @@ namespace ${namespace}DAL.Bases
     }
 }
 </Value>
+    </Setting>
+    <Setting Name="MsSqlDALConf" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">using ${namespace}Helper;
+using System.Data.SqlClient;
+
+namespace ${namespace}DAL.Bases
+{
+    /// &lt;summary&gt;
+    /// SqlServer
+    /// &lt;/summary&gt;
+    public abstract class MsSqlDALConf : BaseDALConf&lt;SqlConnection, SqlParameter, MsSqlHelper&gt;
+    {
+        protected MsSqlDALConf(string name) : base(new MsSqlHelper(name))
+        {
+        }
+        protected MsSqlDALConf() : base()
+        {
+        }
+    }
+}
+</Value>
+    </Setting>
+    <Setting Name="MySqlDALConf" Type="System.String" Scope="User">
+      <Value Profile="(Default)">using MySql.Data.MySqlClient;
+
+namespace ${namespace}DAL.Bases
+{
+    /// &lt;summary&gt;
+    /// Mysql
+    /// &lt;/summary&gt;
+    public abstract class MySqlDALConf : BaseDALConf&lt;MySqlConnection, MySqlParameter, Helper.MySqlHelper&gt;
+    {
+        protected MySqlDALConf(string name) : base(new Helper.MySqlHelper(name))
+        {
+        }
+        protected MySqlDALConf() : base()
+        {
+        }
+
+    }
+}</Value>
     </Setting>
   </Settings>
 </SettingsFile>

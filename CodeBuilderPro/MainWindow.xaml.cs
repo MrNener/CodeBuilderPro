@@ -426,7 +426,7 @@ namespace CodeBuilderPro
         private void ExportHelper()
         {
 
-            string helper = sqltype == 2 ? "MySql" : "SqlServer";
+            string helper = sqltype == 2 ? "MySql" : "MsSql";
             string fileHelper = settings.strPath + "Helper" + Path.DirectorySeparatorChar;
             //Hleper And Bases
             var helperBase= settings.strPath + "Helper" + Path.DirectorySeparatorChar+"Bases"+ Path.DirectorySeparatorChar;
@@ -448,6 +448,11 @@ namespace CodeBuilderPro
             pathStr = settings.strPath + "DAL" + Path.DirectorySeparatorChar + "Bases" + Path.DirectorySeparatorChar;
             CreateDirectory(pathStr);
             File.WriteAllText(pathStr + "BaseDALConf.cs", ReplaceNameSpace(settings.BaseDALConf, realyNamespqce), Encoding.UTF8);
+            if (sqltype == (int)SQLType.MySql) {
+                File.WriteAllText(pathStr + "MySqlDALConf.cs", ReplaceNameSpace(settings.MySqlDALConf, realyNamespqce), Encoding.UTF8);
+            } else {
+                File.WriteAllText(pathStr + "MsSqlDALConf.cs", ReplaceNameSpace(settings.MsSqlDALConf, realyNamespqce), Encoding.UTF8);
+            }
         }
 
         private void tbNamespace_LostFocus(object sender, RoutedEventArgs e)

@@ -4,7 +4,6 @@ E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\bin\Debug\CodeBuilderPro.applicatio
 E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\bin\Debug\CodeBuilderPro.exe
 E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\bin\Debug\CodeBuilderPro.pdb
 E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\bin\Debug\MySql.Data.dll
-E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\obj\Debug\CodeBuilderPro.csprojResolveAssemblyReference.cache
 E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\obj\Debug\MainWindow.baml
 E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\obj\Debug\MainWindow.g.cs
 E:\SourcesTree\CodeBuilderPro\CodeBuilderPro\obj\Debug\App.g.cs
