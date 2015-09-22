@@ -447,7 +447,7 @@ namespace CodeBuilderPro
             //DAL
             pathStr = settings.strPath + "DAL" + Path.DirectorySeparatorChar + "Bases" + Path.DirectorySeparatorChar;
             CreateDirectory(pathStr);
-            File.WriteAllText(pathStr + "IBaseDAL.cs", ReplaceNameSpace(settings.BaseDALConf, realyNamespqce), Encoding.UTF8);
+            File.WriteAllText(pathStr + "BaseDALConf.cs", ReplaceNameSpace(settings.BaseDALConf, realyNamespqce), Encoding.UTF8);
         }
 
         private void tbNamespace_LostFocus(object sender, RoutedEventArgs e)

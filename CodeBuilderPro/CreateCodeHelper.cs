@@ -173,7 +173,7 @@ namespace CodeBuilderPro
             }
             sb.AppendLine("public  class  " + tableName + "DAL "+ cName + ", I" + tableName + "DAL{");
             sb.AppendLine("");
-            sb.AppendLine("        public Hlt_CardInfoDAL() : base(new " + helperName + "Helper()) { }");
+            sb.AppendLine("        public "+ tableName + "DAL() : base(new " + helperName + "Helper()) { }");
             GetAllDAL(tableName, dt, sb,"");
             sb.AppendLine("}");
             return sb;
@@ -223,7 +223,7 @@ namespace CodeBuilderPro
             sb.AppendLine("public  class  " + tableName + "DAL " + cName + ", I"+ tableName + "DAL{");
             sb.AppendLine("");
 
-            sb.AppendLine("        public Hlt_CardInfoDAL() : base(new "+ helperName + "Helper()) { }");
+            sb.AppendLine("        public "+ tableName + "DAL() : base(new "+ helperName + "Helper()) { }");
 
             GetAllDAL(tableName, dt, sb, "    ");
             sb.AppendLine("    }");
